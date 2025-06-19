@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Редагувати фото</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; color: #333; }
+        h1 { color: #0056b3; }
+        form { background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); max-width: 500px; margin-top: 20px; }
+        form div { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
+        input[type="text"], textarea { width: calc(100% - 20px); padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; }
+        textarea { resize: vertical; min-height: 80px; }
+        button { padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #218838; }
+        img { border: 1px solid #ddd; padding: 5px; background: #eee; margin-top: 15px; max-width: 100%; height: auto; border-radius: 4px; }
+        .back-link { margin-top: 20px; display: inline-block; text-decoration: none; color: #007bff; }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>Редагувати фото</h1>
+    
+    {% if photo %}
+        <div>
+            <p>Поточне зображення:</p>
+            <img src="{{ url_for('static', filename='uploads/' + photo['filename']) }}" alt="Поточна фотографія" width="250">
+        </div>
+        
+        <form method="post">
+            <div>
+                <label for="author">Автор:</label>
+                <input type="text" id="author" name="author" value="{{ photo['author'] }}" required>
+            </div>
+            <div>
+                <label for="tags">Теги (розділені комами):</label>
+                <textarea id="tags" name="tags" rows="3" required>{{ photo['tags'] }}</textarea>
+            </div>
+            <div>
+                <button type="submit">Зберегти зміни</button>
+            </div>
+        </form>
+    {% else %}
+        <p>Фотографію не знайдено для редагування.</p>
+    {% endif %}
+
+    <a href="{{ url_for('admin') }}" class="back-link">Повернутися до адмін-панелі</a>
+</body>
+</html>

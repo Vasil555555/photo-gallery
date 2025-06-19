@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<title>Завантаження фото</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #fafafa;
+    margin: 20px;
+  }
+  form {
+    max-width: 400px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  input[type="text"], input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  input[type="text"]:focus, input[type="file"]:focus {
+    border-color: #4285f4;
+    outline: none;
+  }
+  input[type="submit"] {
+    margin-top: 20px;
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  input[type="submit"]:hover {
+    background-color: #3367d6;
+  }
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<form id="upload-form" method="post" enctype="multipart/form-data" novalidate>
+  <label for="photo">Фото (обов’язково):</label>
+  <input type="file" id="photo" name="photo" accept="image/*" required />
+  <div class="error" id="photo-error">Будь ласка, оберіть фото.</div>
+
+  <label for="author">Автор (обов’язково):</label>
+  <input type="text" id="author" name="author" required />
+  <div class="error" id="author-error">Вкажіть автора.</div>
+
+  <label for="tags">Теги (обов’язково):</label>
+  <input type="text" id="tags" name="tags" required />
+  <div class="error" id="tags-error">Вкажіть теги.</div>
+
+  <input type="submit" value="Завантажити" />
+</form>
+
+<script>
+  document.getElementById('upload-form').addEventListener('submit', function(e) {
+    let valid = true;
+
+    const photo = document.getElementById('photo');
+    const author = document.getElementById('author');
+    const tags = document.getElementById('tags');
+
+    // Сховати всі помилки перед перевіркою
+    document.getElementById('photo-error').style.display = 'none';
+    document.getElementById('author-error').style.display = 'none';
+    document.getElementById('tags-error').style.display = 'none';
+
+    if (!photo.value) {
+      document.getElementById('photo-error').style.display = 'block';
+      valid = false;
+    }
+    if (!author.value.trim()) {
+      document.getElementById('author-error').style.display = 'block';
+      valid = false;
+    }
+    if (!tags.value.trim()) {
+      document.getElementById('tags-error').style.display = 'block';
+      valid = false;
+    }
+
+    if (!valid) {
+      e.preventDefault();
+    }
+  });
+</script>
+
+</body>
+</html>

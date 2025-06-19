@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Фотогалерея{% endblock %}</title>
+    <style>
+        a.tag-link {
+            margin: 0 4px;
+            color: #4285f4;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        a.tag-link:hover {
+            text-decoration: underline;
+        }
+        nav a {
+            margin: 0 8px;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}">Головна</a> |
+        <a href="{{ url_for('about') }}">Про додаток</a> |
+        {% if session.username %}
+            <a href="{{ url_for('admin') }}">Адмінка</a> |
+            <a href="{{ url_for('logout') }}">Вийти ({{ session.username }})</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">Вхід</a>
+        {% endif %}
+    </nav>
+    <hr>
+    
+    {% block content %}
+    <!-- Тут буде контент конкретної сторінки -->
+    {% endblock %}
+
+</body>
+</html>

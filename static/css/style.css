@@ -1,0 +1,113 @@
+/* Загальні стилі */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+/* Меню навігації */
+nav {
+    margin-bottom: 20px;
+}
+
+nav a {
+    color: #4285f4;
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Заголовки */
+h1, h2 {
+    color: #222;
+}
+
+/* Фото у галереї */
+.photo {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    padding: 10px;
+    margin-bottom: 20px;
+    display: inline-block;
+    vertical-align: top;
+    width: 300px;
+    text-align: center;
+}
+
+.photo img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Кнопки */
+button {
+    background-color: #4285f4;
+    border: none;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 5px 2px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #3367d6;
+}
+
+/* Форми */
+input[type="text"], input[type="password"], input[type="file"] {
+    padding: 8px;
+    width: 250px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form label {
+    font-weight: bold;
+}
+
+/* Теги */
+a.tag-link {
+    color: #4285f4;
+    text-decoration: none;
+    margin: 0 4px;
+    font-size: 0.9em;
+}
+
+a.tag-link:hover {
+    text-decoration: underline;
+}
+
+/* Адмінка — блок фото */
+.admin-photo {
+    margin-bottom: 30px;
+}
+
+.admin-photo img {
+    border-radius: 6px;
+    max-width: 300px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Повідомлення (flash) */
+.flash-message {
+    padding: 10px;
+    background-color: #dff0d8;
+    border: 1px solid #3c763d;
+    color: #3c763d;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    width: 300px;
+}

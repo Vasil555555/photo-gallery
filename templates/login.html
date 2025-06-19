@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Вхід — Фотогалерея{% endblock %}
+
+{% block content %}
+    <h1>Сторінка входу</h1>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <form method="post">
+        <label for="username">Логін:</label>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <button type="submit">Увійти</button>
+    </form>
+
+    <p><a href="{{ url_for('index') }}">← Назад на головну</a></p>
+{% endblock %}

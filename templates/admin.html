@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Панель адміністратора — Фотогалерея{% endblock %}
+
+{% block content %}
+    <h1>Панель адміністратора</h1>
+    <h2>Завантажені фото</h2>
+    {% if photos %}
+        {% for photo in photos %}
+            <div>
+                <img src="{{ url_for('static', filename='uploads/' + photo['filename']) }}" alt="Фотографія: {{ photo['tags'] }}" width="300"><br>
+                <strong>Автор:</strong> {{ photo['author'] }}<br>
+                <strong>Теги:</strong> {{ photo['tags'] }}<br>
+                <strong>Час:</strong> {{ photo['timestamp'] }}<br>
+                
+                <a href="{{ url_for('edit_photo', photo_id=photo['id']) }}">
+                    <button type="button">Редагувати</button>
+                </a>
+                
+                <form action="{{ url_for('delete_photo', photo_id=photo['id']) }}" method="post" style="display:inline; margin-left: 10px;">
+                    <button type="submit" onclick="return confirm('Видалити це фото?');">Видалити</button>
+                </form>
+                <hr>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Фото ще не завантажено.</p>
+    {% endif %}
+{% endblock %}

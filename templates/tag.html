@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Фото з тегом "{{ tag }}"</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f7f7f7;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        .photo {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+            width: 250px;
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+        a.tag-link {
+            margin: 0 3px;
+            font-size: 0.9em;
+            color: #4285f4;
+            text-decoration: none;
+        }
+        a.tag-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Фото з тегом: "{{ tag }}"</h1>
+    <div class="gallery">
+        {% for photo in photos %}
+        <div class="photo">
+            <img src="/static/uploads/{{ photo.filename }}" alt="">
+            <p><strong>Автор:</strong> {{ photo.author }}</p>
+            <p><strong>Дата:</strong> {{ photo.timestamp }}</p>
+            <p><strong>Теги:</strong>
+                {% for t in photo.tags.split(',') %}
+                    <a class="tag-link" href="{{ url_for('tag', tag=t.strip()) }}">{{ t.strip() }}</a>
+                {% endfor %}
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Фотогалерея</title>
+    <style>
+        a.tag-link {
+            margin: 0 4px;
+            color: #4285f4;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        a.tag-link:hover {
+            text-decoration: underline;
+        }
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #333;
+        }
+        nav {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Фотогалерея</h1>
+    {% if filter_tag %}
+    <p>Показано фото з тегом: <strong>{{ filter_tag }}</strong></p>
+{% endif %}
+    <nav>
+        <a href="/">Головна</a> |
+        <a href="/about">Про додаток</a> |
+        <a href="/slideshow">Слайдшоу</a> |
+        {% if session.username %}
+            <a href="/admin">Адмінка</a> |
+            <a href="/logout">Вийти ({{ session.username }})</a>
+        {% else %}
+            <a href="/login">Вхід</a>
+        {% endif %}
+    </nav>
+    <hr>
+
+    {% if photos %}
+        {% for photo in photos %}
+            <div>
+                <img src="{{ url_for('static', filename='uploads/' + photo['filename']) }}" width="300"><br>
+                <strong>Автор:</strong> {{ photo['author'] }}<br>
+                <strong>Теги:</strong>
+                {% for t in photo['tags'].split(',') %}
+                    <a class="tag-link" href="{{ url_for('tag', tag=t.strip()) }}">{{ t.strip() }}</a>
+                {% endfor %}<br>
+                <strong>Дата:</strong> {{ photo['timestamp'] }}<br>
+                <hr>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Поки що немає фотографій.</p>
+    {% endif %}
+</body>
+</html>
