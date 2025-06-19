@@ -1,0 +1,35 @@
+# Системні файли macOS
+.DS_Store
+.Trashes
+.AppleDouble
+.LSOverride
+
+# Python-кеші
+__pycache__/
+*.py[cod]
+*.so
+*.pyo
+
+# SQLite база (якщо не хочеш пушити локальну базу)
+*.db
+
+# Файли середовища
+.env
+.venv/
+venv/
+ENV/
+env.bak/
+*.swp
+
+# VSCode файли
+.vscode/
+
+# Логи
+*.log
+
+# Файли, що створюються IDE
+.idea/
+*.iml
+
+# Завантаження
+static/uploads/
