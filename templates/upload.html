@@ -1,14 +1,25 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-<meta charset="UTF-8" />
-<title>Завантаження фото</title>
+{% extends 'base.html' %}
+
+{% block title %}Завантаження фото{% endblock %}
+
+{% block content %}
+<form id="upload-form" method="post" enctype="multipart/form-data" novalidate>
+  <label for="photo">Фото (обов’язково):</label>
+  <input type="file" id="photo" name="photo" accept="image/*" required />
+  <div class="error" id="photo-error">Будь ласка, оберіть фото.</div>
+
+  <label for="author">Автор (обов’язково):</label>
+  <input type="text" id="author" name="author" required />
+  <div class="error" id="author-error">Вкажіть автора.</div>
+
+  <label for="tags">Теги (обов’язково):</label>
+  <input type="text" id="tags" name="tags" required />
+  <div class="error" id="tags-error">Вкажіть теги.</div>
+
+  <input type="submit" value="Завантажити" />
+</form>
+
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #fafafa;
-    margin: 20px;
-  }
   form {
     max-width: 400px;
     margin: auto;
@@ -56,24 +67,6 @@
     display: none;
   }
 </style>
-</head>
-<body>
-
-<form id="upload-form" method="post" enctype="multipart/form-data" novalidate>
-  <label for="photo">Фото (обов’язково):</label>
-  <input type="file" id="photo" name="photo" accept="image/*" required />
-  <div class="error" id="photo-error">Будь ласка, оберіть фото.</div>
-
-  <label for="author">Автор (обов’язково):</label>
-  <input type="text" id="author" name="author" required />
-  <div class="error" id="author-error">Вкажіть автора.</div>
-
-  <label for="tags">Теги (обов’язково):</label>
-  <input type="text" id="tags" name="tags" required />
-  <div class="error" id="tags-error">Вкажіть теги.</div>
-
-  <input type="submit" value="Завантажити" />
-</form>
 
 <script>
   document.getElementById('upload-form').addEventListener('submit', function(e) {
@@ -83,7 +76,6 @@
     const author = document.getElementById('author');
     const tags = document.getElementById('tags');
 
-    // Сховати всі помилки перед перевіркою
     document.getElementById('photo-error').style.display = 'none';
     document.getElementById('author-error').style.display = 'none';
     document.getElementById('tags-error').style.display = 'none';
@@ -106,6 +98,4 @@
     }
   });
 </script>
-
-</body>
-</html>
+{% endblock %}

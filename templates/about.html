@@ -1,22 +1,8 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <title>Вхід</title>
-</head>
-<body>
-    <h1>Вхід</h1>
+{% extends "base.html" %}
 
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
+{% block title %}Про додаток{% endblock %}
 
-    <form method="post">
-        <label>Логін: <input type="text" name="username"></label><br>
-        <label>Пароль: <input type="password" name="password"></label><br>
-        <button type="submit">Увійти</button>
-    </form>
-
-    <p><a href="/">← Назад на головну</a></p>
-</body>
-</html>
+{% block content %}
+<h1>Про цей додаток</h1>
+<p>Це фотогалерея на Flask з базовим функціоналом: завантаження фото, пошук за тегами, слайдшоу та адміністративна панель.</p>
+{% endblock %}

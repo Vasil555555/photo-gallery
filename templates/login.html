@@ -1,23 +1,110 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <title>Вхід</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fafafa;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+    form {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 350px;
+      width: 100%;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      border-color: #4285f4;
+      outline: none;
+    }
+    .error {
+      color: red;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    button {
+      margin-top: 20px;
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #3367d6;
+    }
+    .show-password {
+      margin-top: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      user-select: none;
+      color: #4285f4;
+    }
+    a.back-link {
+      display: inline-block;
+      margin-top: 15px;
+      font-size: 14px;
+      text-decoration: none;
+      color: #555;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
 
-{% block title %}Вхід — Фотогалерея{% endblock %}
+<form method="post" action="{{ url_for('login') }}">
+  <label for="username">Логін:</label>
+  <input type="text" id="username" name="username" required />
 
-{% block content %}
-    <h1>Сторінка входу</h1>
+  <label for="password">Пароль:</label>
+  <input type="password" id="password" name="password" required />
 
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
+  <label class="show-password">
+    <input type="checkbox" id="toggle-password" /> Показати пароль
+  </label>
 
-    <form method="post">
-        <label for="username">Логін:</label>
-        <input type="text" id="username" name="username" required><br><br>
+  {% if error %}
+  <div class="error">{{ error }}</div>
+  {% endif %}
 
-        <label for="password">Пароль:</label>
-        <input type="password" id="password" name="password" required><br><br>
+  <button type="submit">Увійти</button>
+  <a href="{{ url_for('index') }}" class="back-link">Назад на головну</a>
+</form>
 
-        <button type="submit">Увійти</button>
-    </form>
+<script>
+  document.getElementById('toggle-password').addEventListener('change', function() {
+    const passInput = document.getElementById('password');
+    passInput.type = this.checked ? 'text' : 'password';
+  });
+</script>
 
-    <p><a href="{{ url_for('index') }}">← Назад на головну</a></p>
-{% endblock %}
+</body>
+</html>
